@@ -1,5 +1,4 @@
 root: true
-parser: babel-eslint
 extends:
   - semistandard
   - plugin:prettier/recommended
@@ -8,6 +7,7 @@ rules:
 overrides:
   - files:
       - .mocharc.js
+      - test
     parserOptions:
       sourceType: script
   - files:

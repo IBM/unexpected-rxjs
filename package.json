@@ -1,55 +1,42 @@
 {
-  "name": "packagename",
+  "name": "unexpected-rxjs",
   "version": "0.0.0",
-  "private": true,
-  "description": "Shankle short loin porchetta strip steak tongue drumstick shoulder shank turkey pork loin picanha flank.",
-  "main": "src/index.js",
-  "scripts": {
-    "posttest": "markdownlint --ignore node_modules . && eslint .",
-    "test": "nyc mocha \"test/**/*.spec.js\"",
-    "release": "standard-version"
-  },
+  "description": "RxJS Assertions for Unexpected",
+  "keywords": [
+    "unexpected",
+    "expect",
+    "rxjs",
+    "observable",
+    "assert",
+    "assertions",
+    "unexpected-plugin"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/boneskull/packagename"
+    "url": "https://github.com/boneskull/unexpected-rxjs.git"
   },
-  "keywords": [],
-  "author": "Christopher Hiller <boneskull@boneskull.com> (https://boneskull.com/)",
   "license": "Apache-2.0",
-  "engines": {
-    "node": ">=8"
-  },
-  "dependencies": {
-    "esm": "^3.2.25"
-  },
-  "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.3.0",
-    "eslint-config-semistandard": "^13.0.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-prettier": "^3.1.0",
-    "eslint-plugin-promise": "^4.1.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "husky": "^1.3.1",
-    "lint-staged": "^8.2.0",
-    "markdownlint-cli": "^0.14.1",
-    "mocha": "^6.1.4",
-    "nyc": "^14.1.1",
-    "prettier": "^1.18.2",
-    "proxyquire": "^2.1.0",
-    "sinon": "^7.3.2",
-    "standard-version": "^6.0.1",
-    "unexpected": "^11.6.0",
-    "unexpected-sinon": "^10.11.2"
+  "author": "Christopher Hiller <boneskull@boneskull.com> (https://boneskull.com/)",
+  "main": "dist/unexpected-rxjs.cjs.js",
+  "module": "dist/unexpected-rxjs.esm.js",
+  "browser": "dist/unexpected-rxjs.umd.js",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "release": "standard-version",
+    "pretest": "npm run build",
+    "test": "nyc mocha \"test/**/*.spec.js\"",
+    "posttest": "markdownlint README.md && eslint .",
+    "prepublishOnly": "npm run build"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
   },
+  "files": [
+    "dist/"
+  ],
   "lint-staged": {
     "*.js": [
       "eslint --fix",
@@ -61,8 +48,60 @@
     ]
   },
   "prettier": {
-    "singleQuote": true,
     "bracketSpacing": false,
-    "endOfLine": "auto"
+    "endOfLine": "auto",
+    "singleQuote": true
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-config-semistandard": "^13.0.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.2.0",
+    "markdownlint-cli": "^0.14.1",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
+    "prettier": "^1.18.2",
+    "proxyquire": "^2.1.0",
+    "rollup": "^1.16.3",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-commonjs": "^10.0.1",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rxjs": "^6.5.2",
+    "sinon": "^7.3.2",
+    "standard-version": "^6.0.1",
+    "unexpected": "^11.6.0",
+    "unexpected-sinon": "^10.11.2"
+  },
+  "peerDependencies": {
+    "rxjs": "^6.0.0",
+    "unexpected": "*"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "browsers": "> 3%",
+            "node": "8.0.0"
+          },
+          "modules": false
+        }
+      ]
+    ]
   }
 }

@@ -1,22 +1,48 @@
-# boneskull-template
+# unexpected-rxjs
 
-> JUST THE WAY I LIKE IT
+> Assertions for use with [RxJS](https://rjxs.dev) and [Unexpected](http://unexpected.js.org)
 
-Bacon ipsum dolor amet fatback swine hamburger ham short loin, brisket leberkas alcatra tenderloin filet mignon kevin frankfurter t-bone cupim turducken.
+This module is a plugin for the Unexpected assertion library which provides handy assertions against RxJS `Observable`s.
 
 ## Install
 
+Both `rxjs` and `unexpected` are peer dependencies of this module.
+
 ```shell
-$ npm install PACKAGENAME
+$ npm install rxjs@^6 # peer dependency
+$ npm install unexpected unexpected-rxjs --save-dev
 ```
 
 ## Usage
 
-Alcatra pancetta meatball, leberkas ball tip cupim drumstick tongue strip steak.
+Use as an Unexpected plugin in Node.js:
+
+```js
+const unexpected = require('unexpected');
+const expect = unexpected.clone().use(require('unexpected-rxjs'));
+```
+
+Browser, using globals:
+
+```js
+const unexpected = window.weknowhow.expect;
+const expect = unexpected.clone().use(window.unexpectedRxjs);
+```
+
+## Assertions
+
+- `<Observable> to complete` - Asserts an `Observable` completes. Given the halting problem, this can _only_ fail if the `Observable` emits an error _or_ your test framework times out.
+- `<Observable> [not] to emit (value|values) <any+>` - Asserts an `Observable` emits one or more values using object equivalence.
+- `<Observable> [not] to emit times <count>` - Asserts an `Observable` emits _count_ times.
+- `<Observable> [not] to emit (once|twice|thrice)` - Sugar for previous assertion.
+- `<Observable> [not] to emit error <any?>` - Asserts an `Observable` emits an "error"; uses Unexpected's default error matching.
+- `<Observable> [not] to complete with value <any+>` - Assert when an `Observable` completes, it has emitted one or more matching values.
+- `<Observable> [not] to complete with value [exhaustively] satisfying <any+>` - Same as previous, except using "to satisfy" semantics.
+- `<Observable> when complete <assertion>` - Akin to Unexpected's `<Promise> when fulfilled <assertion>` syntax.
 
 ## Notes
 
-Bacon ribeye ham hock kielbasa landjaeger drumstick pork chop andouille.
+- `<Observable> [not] to complete with value [exhaustively] satisfying <any+>` has some significant performance issues.
 
 ## License
 

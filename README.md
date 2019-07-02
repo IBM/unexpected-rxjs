@@ -22,6 +22,14 @@ const unexpected = require('unexpected');
 const expect = unexpected.clone().use(require('unexpected-rxjs'));
 ```
 
+Or using ES modules:
+
+```js
+import unexpected from 'unexpected';
+import unexpectedRxjs from 'unexpected-rxjs';
+const expect = unexpected.clone().use(unexpectedRxjs);
+```
+
 Browser, using globals:
 
 ```js
@@ -29,7 +37,21 @@ const unexpected = window.weknowhow.expect;
 const expect = unexpected.clone().use(window.unexpectedRxjs);
 ```
 
+Then:
+
+```js
+import {of} from 'rxjs';
+
+describe('contrived example', function() {
+  it('should emit "foo"', function() {
+    return expect(of('foo', 'bar'), 'to emit values', 'foo', 'bar');
+  });
+});
+```
+
 ## Assertions
+
+_Note_: All assertions return `Promise` values, so you will want to `return expect(/*...*/)` (using Mocha) or otherwise use `async` functions.
 
 - `<Observable> to complete` - Asserts an `Observable` completes. Given the halting problem, this can _only_ fail if the `Observable` emits an error _or_ your test framework times out.
 - `<Observable> [not] to emit (value|values) <any+>` - Asserts an `Observable` emits one or more values using object equivalence.

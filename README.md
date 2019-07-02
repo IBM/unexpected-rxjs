@@ -58,6 +58,7 @@ _Note_: All assertions return `Promise` values, so you will want to `return expe
 - `<Observable> [not] to emit times <count>` - Asserts an `Observable` emits _count_ times.
 - `<Observable> [not] to emit (once|twice|thrice)` - Sugar for previous assertion.
 - `<Observable> [not] to emit error <any?>` - Asserts an `Observable` emits an "error"; uses Unexpected's default error matching.
+- `<Observable> to emit error [exhaustively] satisfying <any>` - Asserts an `Observable` emits an "error" using "to satisfy" semantics.
 - `<Observable> [not] to complete with value <any+>` - Assert when an `Observable` completes, it has emitted one or more matching values.
 - `<Observable> [not] to complete with value [exhaustively] satisfying <any+>` - Same as previous, except using "to satisfy" semantics.
 - `<Observable> when complete <assertion>` - Akin to Unexpected's `<Promise> when fulfilled <assertion>` syntax.

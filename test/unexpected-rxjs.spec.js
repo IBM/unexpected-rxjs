@@ -204,6 +204,30 @@ describe('unexpected-rxjs', function() {
     });
   });
 
+  describe('<Observable> to emit error satisfying', function() {
+    it('should fulfill if the Observable emits a satisfying error', function() {
+      const fancyError = new Error();
+      fancyError.code = 'EBUTTS';
+      return expect(
+        expect(throwError(fancyError), 'to emit error satisfying', {
+          code: 'EBUTTS'
+        }),
+        'to be fulfilled'
+      );
+    });
+
+    it('should reject if the Observable does not emit a satisfying error', function() {
+      const fancyError = new Error();
+      fancyError.code = 'EBUTTS';
+      return expect(
+        expect(throwError(fancyError), 'to emit error satisfying', {
+          code: 'EANGST'
+        }),
+        'to be rejected'
+      );
+    });
+  });
+
   describe('<Observable> to complete with value <value+>', function() {
     it('should fulfill if the Observable emits matching values', function() {
       return expect(

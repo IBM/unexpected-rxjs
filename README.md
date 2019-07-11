@@ -69,4 +69,4 @@ _Note_: All assertions return `Promise` values, so you will want to `return expe
 
 ## License
 
-Copyright © 2019 Christopher Hiller. Licensed Apache-2.0
+Copyright © 2019 IBM. Licensed Apache-2.0

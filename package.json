@@ -16,7 +16,7 @@
     "url": "https://github.com/boneskull/unexpected-rxjs.git"
   },
   "license": "Apache-2.0",
-  "author": "Christopher Hiller <boneskull@boneskull.com> (https://boneskull.com/)",
+  "author": "Christopher Hiller <christopher.hiller@ibm.com> (https://boneskull.com/)",
   "main": "dist/unexpected-rxjs.cjs.js",
   "module": "dist/unexpected-rxjs.esm.js",
   "browser": "dist/unexpected-rxjs.umd.js",

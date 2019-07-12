@@ -103,5 +103,10 @@
         }
       ]
     ]
+  },
+  "standard-version": {
+    "scripts": {
+      "postchangelog": "prettier --write CHANGELOG.md"
+    }
   }
 }

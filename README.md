@@ -63,6 +63,10 @@ _Note_: All assertions return `Promise` values, so you will want to `return expe
 - `<Observable> [not] to complete with value [exhaustively] satisfying <any+>` - Same as previous, except using "to satisfy" semantics.
 - `<Observable> when complete <assertion>` - Akin to Unexpected's `<Promise> when fulfilled <assertion>` syntax.
 
+## Development
+
+Execute `npm run build` to bundle the project for distribution.
+
 ## Notes
 
 - `<Observable> [not] to complete with value [exhaustively] satisfying <any+>` has some significant performance issues.

@@ -3,12 +3,12 @@
   "version": "0.2.2",
   "description": "RxJS Assertions for Unexpected",
   "keywords": [
-    "unexpected",
-    "expect",
-    "rxjs",
-    "observable",
     "assert",
     "assertions",
+    "expect",
+    "observable",
+    "rxjs",
+    "unexpected",
     "unexpected-plugin"
   ],
   "repository": {
@@ -17,26 +17,28 @@
   },
   "license": "Apache-2.0",
   "author": "Christopher Hiller <christopher.hiller@ibm.com> (https://boneskull.com/)",
+  "files": [
+    "dist/"
+  ],
   "main": "dist/unexpected-rxjs.cjs.js",
   "module": "dist/unexpected-rxjs.esm.js",
   "browser": "dist/unexpected-rxjs.umd.js",
   "scripts": {
     "build": "rollup -c",
+    "clean": "git clean -fdx dist",
     "dev": "rollup -c -w",
+    "prepublishOnly": "npm run build",
+    "prerelease": "npm run clean && npm run build",
     "release": "standard-version",
     "pretest": "npm run build",
     "test": "nyc mocha \"test/**/*.spec.js\"",
-    "posttest": "markdownlint README.md && eslint .",
-    "prepublishOnly": "npm run build"
+    "posttest": "markdownlint README.md && eslint ."
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
   },
-  "files": [
-    "dist/"
-  ],
   "lint-staged": {
     "*.js": [
       "eslint --fix",
@@ -45,6 +47,20 @@
     "*.{yml,md}": [
       "prettier --write",
       "git add"
+    ]
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "browsers": "> 3%",
+            "node": "8.0.0"
+          },
+          "modules": false
+        }
+      ]
     ]
   },
   "prettier": {
@@ -89,20 +105,6 @@
   },
   "engines": {
     "node": ">=8"
-  },
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "targets": {
-            "browsers": "> 3%",
-            "node": "8.0.0"
-          },
-          "modules": false
-        }
-      ]
-    ]
   },
   "standard-version": {
     "scripts": {
